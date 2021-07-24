@@ -3,6 +3,11 @@ from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 
 my_url = 'https://www.amigurumi.com/search/free/'
+# Open csv file
+filename = "patterns.csv"
+f = open(filename, "w")
+headers = "pattern, link, description, category\n"
+f.write(headers)
 for page in range (1,10): #parse 10 pages
     new_url = my_url + str(page) + '/'
     uClient = uReq(new_url)
@@ -10,11 +15,7 @@ for page in range (1,10): #parse 10 pages
     uClient.close()
     page_soup=soup(page_html, "html.parser")
     containers = page_soup.findAll("div", {"class":"item"})
-    # Write to csv file
-    filename = "patterns.csv"
-    f = open(filename, "w")
-    headers = "pattern, link, description, category\n"
-    f.write(headers)
+    
     for i in range(len(containers)): #Go through each item
         container = containers[i]
         # Name of pattern
@@ -43,5 +44,6 @@ for page in range (1,10): #parse 10 pages
         group = category[1].text
 
         f.write(name + "," +  link + "," + new_des_text.replace(",", " ") + ","  + group + "\n")
+    print("done!" + str(page))
 
-    f.close()
+f.close()
