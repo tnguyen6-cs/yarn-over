@@ -44,6 +44,5 @@ for page in range (1,10): #parse 10 pages
         group = category[1].text
 
         f.write(name + "," +  link + "," + new_des_text.replace(",", " ") + ","  + group + "\n")
-    print("done!" + str(page))
 
 f.close()
