@@ -5,9 +5,9 @@ import sqlite3
 
 my_url = 'https://www.amigurumi.com/search/free/'
 #Connect to sqlite3 database
-conn = sqlite3.connect('my_database.db')
-cur = conn.cursor()
-cur.execute('''CREATE TABLE IF NOT EXISTS my_table(pattern TEXT,link TEXT,description TEXT,category TEXT)''')
+#conn = sqlite3.connect('my_database.db')
+#cur = conn.cursor()
+#cur.execute('''CREATE TABLE IF NOT EXISTS my_table(pattern TEXT,link TEXT,description TEXT,category TEXT)''')
 # Open csv file
 #filename = "patterns.csv"
 #f = open(filename, "w")
@@ -47,13 +47,13 @@ for page in range (1,2): #parse 10 pages
         category = pattern_soup.findAll("span", {"itemprop": "title"})
         
         group = category[1].text
-
+        p = PatternTable(name, link, new_des_text, group)
         #f.write(name + "," +  link + "," + new_des_text.replace(",", " ") + ","  + group + "\n")
-        cur.execute('''INSERT INTO my_table(pattern,link, description, category) VALUES(?,?,?,?)''', (name, link, new_des_text, group))
-        conn.commit()
+        #cur.execute('''INSERT INTO my_table(pattern,link, description, category) VALUES(?,?,?,?)''', (name, link, new_des_text, group))
+        #conn.commit()
 #f.close()
 #cur.execute('''SELECT * FROM my_table ''')
 #results= cur.fetchall()
 #print(results)
-cur.close()
-conn.close()
+#cur.close()
+#conn.close()
