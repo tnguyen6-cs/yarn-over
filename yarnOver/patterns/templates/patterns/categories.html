@@ -1,0 +1,12 @@
+{% extends "patterns/layout.html" %} 
+
+{% block body %} 
+<h1> Categories</h1>
+<ul>
+    {% for cate in results %} 
+    <li> 
+        <a href = "{% url 'category' cate.id %}">{{cate.cate}}</a>
+        </li>
+    {% endfor %} 
+</ul>
+{% endblock %}

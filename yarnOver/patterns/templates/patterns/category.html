@@ -1,0 +1,10 @@
+{% extends "patterns/layout.html" %} 
+
+{% block body %} 
+<h1> {{c.cate}}</h1>
+<ul>
+    {% for p in all_patterns %} 
+    <li>         <a href = "{% url 'pattern' p.id %}">{{p.name}}</a> </li>
+    {% endfor %} 
+</ul>
+{% endblock %}
